@@ -7,11 +7,16 @@ export default async (req, res) => {
     await dbConnect();
 
     switch (method) {
-        case 'GET': // details
+        case 'GET': // search
             try {
                 const { id } = req.query;
-                const product = await Product.findOne({ _id: id });
-                res.status(200).json(product);
+                let products;
+                if (id === '') {
+                    products = await Product.find();
+                } else {
+                    products = await Product.find({ name: { "$regex": `^${id}`, "$options": "i" } });
+                }
+                res.status(200).json(products);
             } catch (err) {
                 res.status(400).json({ success: false, message: err });
             }

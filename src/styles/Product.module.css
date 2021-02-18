@@ -10,3 +10,8 @@
     width: 50%;
     height: max-content;
 }
+
+.formText {
+    font-size: 0.875rem;
+    color: #75757D;
+}

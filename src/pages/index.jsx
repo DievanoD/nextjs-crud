@@ -5,7 +5,8 @@ import Router from 'next/router';
 // import FooterComponent from '../components/footer';
 import HeadComponent from '../components/head';
 import NavbarComponent from '../components/navbar';
-import TableProducts from '../components/table-products';
+import ProductSearchInput from '../components/productSearchInput';
+import TableProducts from '../components/productsTable';
 import axios from 'axios';
 
 import styles from '../styles/Home.module.css';
@@ -35,7 +36,9 @@ class Home extends Component {
                     <div className='container'>
                         <Button variant="primary" onClick={() => Router.push('/product/add')} className='my-3'>Novo Produto</Button>
 
-                        <TableProducts products={this.state.products} />
+                        {/* <ProductSearchInput /> */}
+
+                        <TableProducts />
                     </div>
                 </main>
 
