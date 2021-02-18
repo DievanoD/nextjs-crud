@@ -1,0 +1,12 @@
+.container {
+    height: calc(100% - 56px);
+    display: flex;
+    justify-content: center;
+    /* align-items: center; */
+}
+
+.formCard {
+    margin-top: 2.5rem;
+    width: 50%;
+    height: max-content;
+}
