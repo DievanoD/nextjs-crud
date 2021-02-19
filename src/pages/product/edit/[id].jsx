@@ -11,16 +11,21 @@ import styles from '../../../styles/Product.module.css';
 class ProductEdit extends Component {
     constructor(props) {
         super(props);
-        this.id = Router.query.id;
         this.state = {
             name: '',
             price: 0
         }
     }
 
+    static async getInitialProps({ query }) {
+        const id = query.id;
+        return {
+            id: id,
+        }
+    }
+
     async componentDidMount() {
-        console.log(this.id);
-        const response = await axios.get(`http://localhost:3000/api/product/details/${this.id}`);
+        const response = await axios.get(`http://localhost:3000/api/product/details/${this.props.id}`);
         this.setState({ name: response.data.name, price: response.data.price });
     }
 
@@ -33,7 +38,7 @@ class ProductEdit extends Component {
 
         const { name, price } = this.state;
 
-        const res = await axios.put(`http://localhost:3000/api/product/${this.id}`, { name, price });
+        const res = await axios.put(`http://localhost:3000/api/product/${this.props.id}`, { name, price });
         // console.log(res.data);
 
         if (res.data.success) Router.push('/');
@@ -42,7 +47,7 @@ class ProductEdit extends Component {
     render() {
         return (
             <React.Fragment>
-                <HeadComponent title={"Editar Produto"} />
+                <HeadComponent title={"Editar Produto - Next Produtos"} />
                 <NavbarComponent />
                 <div className={styles.container}>
                     <Card className={styles.formCard}>

@@ -8,8 +8,10 @@
     "start": "next start"
   },
   "dependencies": {
+    "@fortawesome/fontawesome-free": "^5.15.2",
     "axios": "^0.21.1",
     "bootstrap": "^4.6.0",
+    "moment": "^2.29.1",
     "mongodb": "^3.6.4",
     "mongoose": "^5.11.15",
     "next": "10.0.6",

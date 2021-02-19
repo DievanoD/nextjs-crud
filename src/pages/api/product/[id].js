@@ -9,11 +9,14 @@ export default async (req, res) => {
     switch (method) {
         case 'GET': // search
             try {
-                const { id } = req.query;
+                const { id, page = 1 } = req.query;
                 let products;
-                if (id === '') {
+                console.log('ID:' + id + '|PAGE: ' + page);
+                if (id === 'all') {
+                    console.log('vazio');
                     products = await Product.find();
                 } else {
+                    console.log('pesquisa');
                     products = await Product.find({ name: { "$regex": `^${id}`, "$options": "i" } });
                 }
                 res.status(200).json(products);

@@ -34,7 +34,7 @@ class AddProduct extends Component {
     render() {
         return (
             <React.Fragment>
-                <HeadComponent title={"Add Product"} />
+                <HeadComponent title={"Add Produto - Next Produtos"} />
                 <NavbarComponent />
                 <div className={styles.container}>
                     <Card className={styles.formCard}>
