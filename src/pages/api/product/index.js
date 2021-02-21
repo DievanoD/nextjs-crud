@@ -1,9 +1,12 @@
+import { getSession } from 'next-auth/client';
 import dbConnect from '../../../utils/dbConnect';
 import Product from '../../../models/Product';
 
 export default async (req, res) => {
-
     const { method } = req;
+    const session = await getSession({ req });
+
+    if (!session) return res.json({ success: false, message: 'You need to be logged in to access the data.' });
 
     await dbConnect();
 
@@ -11,7 +14,7 @@ export default async (req, res) => {
         case 'GET': // list
             try {
                 const products = await Product.find();
-                res.status(200).json(products);
+                res.status(200).json({ success: true, data: products });
             } catch (err) {
                 res.status(400).json({ success: false, message: err })
             }

@@ -11,7 +11,8 @@ class TableProducts extends Component {
         super(props);
         this.state = {
             input: '',
-            products: []
+            products: [],
+            isLoading: true
         }
     }
 
@@ -26,7 +27,13 @@ class TableProducts extends Component {
         (str === '') ? p = 'all' : p = str;
 
         const res = await axios.get(`http://localhost:3000/api/product/${p}`);
-        this.setState({ ...this.state, products: res.data });
+
+        if (!res.data.success) {
+            // alert('Você precisa estar logado');
+            return Router.push('/');
+        }
+
+        this.setState({ ...this.state, products: res.data.data, isLoading: false });
     }
 
     keyHandler = async (e) => {
@@ -54,38 +61,48 @@ class TableProducts extends Component {
     }
 
     render() {
-        const { products } = this.state;
+        const { products, isLoading } = this.state;
         return (
             <React.Fragment>
-                <div className='mt-4 mb-4 text-center'>
-                    <InputGroup className='w-75 mx-auto'>
-                        <FormControl type='text' placeholder='Pesquisar produto...' onKeyUp={this.keyHandler} onChange={this.setInputValue} value={this.state.input} />
-                        {/* <Button variant="light" className='ml-2' onClick={this.clear}>Limpar</Button> */}
-                    </InputGroup>
-                    <span className={styles.formText}><span className='text-danger'>*</span>Aperte a tecla <strong>ESC</strong> para limpar o campo de pesquisa</span>
-                </div>
-                <Table bordered hover responsive className='text-center'>
-                    <thead>
-                        <tr>
-                            <th>#</th>
-                            <th>Nome</th>
-                            <th>Preço</th>
-                            <th>Data</th>
-                            <th><i className="fas fa-cog"></i></th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        {products.map((product, index) => (
-                            <tr key={product._id}>
-                                <td>{index + 1}</td>
-                                <td>{product.name}</td>
-                                <td>{this.formatCoin(product.price)}</td>
-                                <td>{this.formatDate(product.createdAt)}</td>
-                                <td><Button variant='warning' onClick={() => Router.push(`/product/edit/${product._id}`)}><i className="fas fa-edit"></i></Button></td>
-                            </tr>
-                        ))}
-                    </tbody>
-                </Table>
+                {(!isLoading) ?
+                    <div>
+                        <div className='mt-4 mb-4 text-center'>
+                            <InputGroup className='w-75 mx-auto'>
+                                <FormControl type='text' placeholder='Pesquisar produto...' onKeyUp={this.keyHandler} onChange={this.setInputValue} value={this.state.input} />
+                                {/* <Button variant="light" className='ml-2' onClick={this.clear}>Limpar</Button> */}
+                            </InputGroup>
+                            <span className={styles.formText}><span className='text-danger'>*</span>Aperte a tecla <strong>ESC</strong> para limpar o campo de pesquisa</span>
+                        </div>
+                        <Table bordered hover responsive className='text-center'>
+                            <thead>
+                                <tr>
+                                    <th>#</th>
+                                    <th>Nome</th>
+                                    <th>Preço</th>
+                                    <th>Data</th>
+                                    <th><i className="fas fa-cog"></i></th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                {products.map((product, index) => (
+                                    <tr key={product._id}>
+                                        <td>{index + 1}</td>
+                                        <td>{product.name}</td>
+                                        <td>{this.formatCoin(product.price)}</td>
+                                        <td>{this.formatDate(product.createdAt)}</td>
+                                        <td><Button variant='warning' onClick={() => Router.push(`/product/edit/${product._id}`)}><i className="fas fa-edit"></i></Button></td>
+                                    </tr>
+                                ))}
+                            </tbody>
+                        </Table>
+                    </div>
+                    :
+                    <div>
+                        <div className="spinner-border orange-color" role="status">
+                            <span className="sr-only">Loading...</span>
+                        </div>
+                    </div>
+                }
             </React.Fragment>
         );
     }

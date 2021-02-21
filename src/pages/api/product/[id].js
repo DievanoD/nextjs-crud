@@ -1,8 +1,12 @@
+import { getSession } from 'next-auth/client';
 import dbConnect from '../../../utils/dbConnect';
 import Product from '../../../models/Product';
 
 export default async (req, res) => {
     const { method } = req;
+    const session = await getSession({ req });
+
+    if (!session) return res.json({ success: false, message: 'You need to be logged in to access the data.' });
 
     await dbConnect();
 
@@ -11,15 +15,15 @@ export default async (req, res) => {
             try {
                 const { id, page = 1 } = req.query;
                 let products;
-                console.log('ID:' + id + '|PAGE: ' + page);
+                // console.log('ID:' + id + '|PAGE: ' + page);
                 if (id === 'all') {
-                    console.log('vazio');
+                    // console.log('vazio');
                     products = await Product.find();
                 } else {
-                    console.log('pesquisa');
+                    // console.log('pesquisa');
                     products = await Product.find({ name: { "$regex": `^${id}`, "$options": "i" } });
                 }
-                res.status(200).json(products);
+                res.status(200).json({ success: true, data: products });
             } catch (err) {
                 res.status(400).json({ success: false, message: err });
             }

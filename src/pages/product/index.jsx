@@ -1,18 +1,17 @@
 import React from 'react';
-import HeadComponent from '../components/head';
-import NavbarComponent from '../components/navbar';
 // import FooterComponent from '../components/footer';
+import HeadComponent from '../../components/head';
+import NavbarComponent from '../../components/navbar';
+import TableProducts from '../../components/productsTable';
 
-// import styles from '../styles/Home.module.css';
-
-const Home = () => {
+const ProductList = () => {
     return (
         <React.Fragment>
-            <HeadComponent title={"Home - Next Produtos"} />
+            <HeadComponent title={"Lista de produtos - Next Produtos"} />
             <main>
                 <NavbarComponent />
                 <div className='container'>
-                    <h1>Homepage</h1>
+                    <TableProducts />
                 </div>
             </main>
             {/* <FooterComponent /> */}
@@ -20,4 +19,4 @@ const Home = () => {
     );
 }
 
-export default Home;
+export default ProductList;
