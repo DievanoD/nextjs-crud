@@ -1,20 +1,24 @@
 import React from 'react';
-// import FooterComponent from '../components/footer';
+
+// Components
 import HeadComponent from '../../components/head';
 import NavbarComponent from '../../components/navbar';
-import TableProducts from '../../components/productsTable';
+import ProductsTable from '../../components/productsTable';
+import FooterComponent from '../../components/footer';
+
+import styles from '../../styles/Product.module.css';
 
 const ProductList = () => {
     return (
         <React.Fragment>
             <HeadComponent title={"Lista de produtos - Next Produtos"} />
-            <main>
-                <NavbarComponent />
-                <div className='container'>
-                    <TableProducts />
+            <NavbarComponent />
+            <div className={styles.mainContent}>
+                <div className={styles.container}>
+                    <ProductsTable />
                 </div>
-            </main>
-            {/* <FooterComponent /> */}
+            </div>
+            <FooterComponent />
         </React.Fragment>
     );
 }

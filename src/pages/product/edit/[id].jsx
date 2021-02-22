@@ -1,10 +1,13 @@
 import React, { Component } from 'react';
 import { Button, Card, Form } from 'react-bootstrap';
 import Router from 'next/router';
+import axios from 'axios';
+
+// Components
 import HeadComponent from '../../../components/head';
 import NavbarComponent from '../../../components/navbar';
-
-import axios from 'axios';
+import SpinnerComponent from '../../../components/spinner';
+import BackBtn from '../../../components/backBtn';
 
 import styles from '../../../styles/Product.module.css';
 
@@ -52,38 +55,39 @@ class ProductEdit extends Component {
             <React.Fragment>
                 <HeadComponent title={"Editar Produto - Next Produtos"} />
                 <NavbarComponent />
-                <div className={styles.container}>
-                    {(!isLoading) ?
-                        <Card className={styles.formCard}>
-                            <Card.Body>
-                                <h3>Editar Produto</h3>
+                <div className='d-flex justify-content-center'>
+                    <div className={styles.container}>
+                        {(!isLoading) ?
+                            <div className={styles.contentBody}>
+                                <BackBtn />
+                                <Card className={styles.formCard}>
+                                    <Card.Body>
+                                        <h3>Editar Produto</h3>
 
-                                <Form onSubmit={this.handleSubmit} className='pt-1'>
-                                    <Form.Group controlId="formBasicName">
-                                        <Form.Label>Nome</Form.Label>
-                                        <Form.Control type="text" placeholder="Nome do produto" onChange={this.setName} value={this.state.name} required />
-                                        <Form.Text className="text-muted">
-                                            Insira o nome do produto.
+                                        <Form onSubmit={this.handleSubmit} className='pt-1'>
+                                            <Form.Group controlId="formBasicName">
+                                                <Form.Label>Nome</Form.Label>
+                                                <Form.Control type="text" placeholder="Nome do produto" onChange={this.setName} value={this.state.name} required />
+                                                <Form.Text className="text-muted">
+                                                    Insira o nome do produto.
                                     </Form.Text>
-                                    </Form.Group>
+                                            </Form.Group>
 
-                                    <Form.Group controlId="formBasicPrice">
-                                        <Form.Label>Preço</Form.Label>
-                                        <Form.Control type="text" placeholder="Preço do produto" onChange={this.setPrice} value={this.state.price} required />
-                                    </Form.Group>
-                                    <Button variant="primary" type="submit">
-                                        Salvar
-                                </Button>
-                                </Form>
-                            </Card.Body>
-                        </Card>
-                        :
-                        <div>
-                            <div className="spinner-border orange-color" role="status">
-                                <span className="sr-only">Loading...</span>
+                                            <Form.Group controlId="formBasicPrice">
+                                                <Form.Label>Preço</Form.Label>
+                                                <Form.Control type="text" placeholder="Preço do produto" onChange={this.setPrice} value={this.state.price} required />
+                                            </Form.Group>
+                                            <Button variant="success" type="submit">
+                                                Salvar
+                                        </Button>
+                                        </Form>
+                                    </Card.Body>
+                                </Card>
                             </div>
-                        </div>
-                    }
+                            :
+                            <SpinnerComponent />
+                        }
+                    </div>
                 </div>
             </React.Fragment>
         );

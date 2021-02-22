@@ -15,13 +15,10 @@ export default async (req, res) => {
             try {
                 const { id, page = 1 } = req.query;
                 let products;
-                // console.log('ID:' + id + '|PAGE: ' + page);
                 if (id === 'all') {
-                    // console.log('vazio');
-                    products = await Product.find();
+                    products = await Product.paginate({}, { page: parseInt(page), limit: 5 });
                 } else {
-                    // console.log('pesquisa');
-                    products = await Product.find({ name: { "$regex": `^${id}`, "$options": "i" } });
+                    products = await Product.paginate({ name: { "$regex": `^${id}`, "$options": "i" } }, { page: parseInt(page), limit: 5 });
                 }
                 res.status(200).json({ success: true, data: products });
             } catch (err) {

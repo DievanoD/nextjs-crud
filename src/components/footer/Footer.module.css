@@ -1,0 +1,11 @@
+.footer {
+    width: inherit;
+    height: 5rem;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.footerText {
+    color: #6e6e6e;
+}
