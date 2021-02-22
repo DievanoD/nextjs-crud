@@ -1,0 +1,23 @@
+.containerHome {
+    height: calc(100vh - (3.5625rem + 4.375rem));
+    padding: 0.9375rem 0.9375rem 0 0.9375rem;
+}
+
+.subcontainerHome {
+    background-color: #f8f9fa;
+    width: inherit;
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.divTextHome {
+    width: 25rem;
+    text-align: center;
+}
+
+.subtitleHome {
+    font-size: 1.125rem;
+    font-weight: 200;
+}

@@ -4,10 +4,10 @@ import Router from 'next/router';
 import axios from 'axios';
 import moment from 'moment';
 
-import PaginateComponent from '../paginate';
+// Components
 import SpinnerComponent from '../spinner';
 
-import styles from '../../styles/Product.module.css';
+import styles from './ProductsTable.module.css';
 
 class TableProducts extends Component {
     constructor(props) {
@@ -24,17 +24,14 @@ class TableProducts extends Component {
     }
 
     async componentDidMount() {
-        await this.getApiData(this.state.input, 0);
-        // console.log(this.state);
+        await this.getApiData(this.state.input, this.state.page);
     }
 
     setInputValue = (e) => (this.setState({ ...this.state, input: e.target.value }));
 
-    getApiData = async (str, p) => {
-        let word = '', pag = 0;
-
+    getApiData = async (str, pag) => {
+        let word = '';
         (str === '') ? word = 'all' : word = str;
-        (p === 0) ? pag = 1 : pag = p;
 
         const res = await axios.get(`http://localhost:3000/api/product/${word}?page=${pag}`);
 
@@ -52,13 +49,13 @@ class TableProducts extends Component {
         if (e.key === 'Escape') {
             this.clear();
         } else {
-            await this.getApiData(this.state.input, 0);
+            await this.getApiData(this.state.input, this.state.page);
         }
     }
 
     clear = async () => {
         this.setState({ ...this.state, input: '' });
-        await this.getApiData('', 0);
+        await this.getApiData('', 1);
     }
 
     formatDate = (date) => {
@@ -85,7 +82,7 @@ class TableProducts extends Component {
         return (
             <React.Fragment>
                 {(!isLoading) ?
-                    <div className='w-100'>
+                    <div className={`${styles.main}`}>
                         <div className='mt-4 mb-4 text-center'>
                             <InputGroup className='w-75 mx-auto'>
                                 <FormControl type='text' placeholder='Pesquisar produto...' onKeyUp={this.keyHandler} onChange={this.setInputValue} value={input} />
@@ -93,41 +90,43 @@ class TableProducts extends Component {
                             </InputGroup>
                             <span className={styles.formText}><span className='text-danger'>*</span>Aperte a tecla <strong>ESC</strong> para limpar o campo de pesquisa</span>
                         </div>
-                        <Table bordered hover responsive className='text-center'>
-                            <thead>
-                                <tr>
-                                    <th>#</th>
-                                    <th>Nome</th>
-                                    <th>Preço</th>
-                                    <th>Data</th>
-                                    <th><i className="fas fa-cog"></i></th>
-                                </tr>
-                            </thead>
-                            {(products.length !== 0) ?
-                                <tbody>
-                                    {products.map((product, index) => (
-                                        <tr key={product._id}>
-                                            <td>{index + 1}</td>
-                                            <td>{product.name}</td>
-                                            <td>{this.formatCoin(product.price)}</td>
-                                            <td>{this.formatDate(product.createdAt)}</td>
-                                            <td><Button variant='warning' onClick={() => Router.push(`/product/edit/${product._id}`)}><i className="fas fa-edit"></i></Button></td>
-                                        </tr>
-                                    ))}
-                                </tbody>
-                                :
-                                <tbody>
+                        <div className={styles.containerTable}>
+                            <Table bordered hover responsive className={`text-center`}>
+                                <thead>
                                     <tr>
-                                        <td colSpan='5'>Desculpe! Nenhum produto encontrado.</td>
+                                        <th>#</th>
+                                        <th>Nome</th>
+                                        <th>Preço</th>
+                                        <th>Data</th>
+                                        <th><i className="fas fa-cog"></i></th>
                                     </tr>
-                                </tbody>
-                            }
-                        </Table>
-
-                        <PaginateComponent page={page} pages={pages} >
+                                </thead>
+                                {(products.length !== 0) ?
+                                    <tbody>
+                                        {products.map((product, index) => (
+                                            <tr key={product._id}>
+                                                <td className='align-middle'>{index + 1}</td>
+                                                <td className='align-middle'>{product.name}</td>
+                                                <td className='align-middle'>{this.formatCoin(product.price)}</td>
+                                                <td className='align-middle'>{this.formatDate(product.createdAt)}</td>
+                                                <td className='align-middle'><Button variant='warning' onClick={() => Router.push(`/product/edit/${product._id}`)}><i className="fas fa-edit"></i></Button></td>
+                                            </tr>
+                                        ))}
+                                    </tbody>
+                                    :
+                                    <tbody>
+                                        <tr>
+                                            <td colSpan='5'><span className='text-danger'>Desculpe! Nenhum produto encontrado.</span></td>
+                                        </tr>
+                                    </tbody>
+                                }
+                            </Table>
+                        </div>
+                        <div className="d-flex justify-content-between align-items-center mt-2">
                             <Button variant='primary' onClick={this.prevPage} disabled={disablePrev}><i className="fas fa-arrow-left mr-1"></i>Anterior</Button>
+                            <span>Página: <span className="text-danger">{page}</span> de <span className="text-muted">{pages}</span></span>
                             <Button variant='primary' onClick={this.nextPage} disabled={disableNext}>Próxima<i className="fas fa-arrow-right ml-1"></i></Button>
-                        </PaginateComponent>
+                        </div>
                     </div>
                     :
                     <SpinnerComponent />

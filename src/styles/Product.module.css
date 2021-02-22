@@ -1,9 +1,15 @@
 .mainContent {
     width: inherit;
-    height: calc(100vh);
+    height: calc(100vh - 3.5rem);
     display: flex;
     justify-content: center;
     align-items: center;
+}
+
+.containerViewport {
+    height: calc(100vh - (3.5625rem + 4.375rem));
+    display: flex;
+    justify-content: center;
 }
 
 .container {
@@ -19,12 +25,7 @@
 }
 
 .formCard {
-    margin-top: 1.5rem;
+    margin-top: 1rem;
     /* width: 50%; */
     height: max-content;
-}
-
-.formText {
-    font-size: 0.875rem;
-    color: #75757d;
 }

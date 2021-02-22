@@ -1,9 +1,11 @@
 .footer {
     width: inherit;
-    height: 5rem;
+    height: 4.375rem;
     display: flex;
     justify-content: center;
     align-items: center;
+    /* background-color: #f8f9fa; */
+    /* color: #ffffff; */
 }
 
 .footerText {

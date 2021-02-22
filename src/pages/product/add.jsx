@@ -9,6 +9,7 @@ import HeadComponent from '../../components/head';
 import NavbarComponent from '../../components/navbar';
 import SpinnerComponent from '../../components/spinner';
 import BackBtn from '../../components/backBtn';
+import FooterComponent from '../../components/footer';
 
 import styles from '../../styles/Product.module.css';
 
@@ -54,7 +55,7 @@ class AddProduct extends Component {
             <React.Fragment>
                 <HeadComponent title={"Add Produto - Next Produtos"} />
                 <NavbarComponent />
-                <div className='d-flex justify-content-center'>
+                <div className={styles.containerViewport}>
                     <div className={styles.container}>
                         {(!isLoading) ?
                             <div className={styles.contentBody}>
@@ -88,6 +89,7 @@ class AddProduct extends Component {
                         }
                     </div>
                 </div>
+                <FooterComponent />
             </React.Fragment>
         );
     }

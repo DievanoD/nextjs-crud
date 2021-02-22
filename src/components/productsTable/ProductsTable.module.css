@@ -1,0 +1,25 @@
+.main {
+    width: 100%;
+    border-bottom: 1px solid #cacaca;
+}
+
+.formText {
+    font-size: 0.875rem;
+    color: #75757d;
+}
+
+.containerTable {
+    height: 23.875rem;
+}
+
+.editBtn {
+    background-color: #fff;
+    border: 2px solid #fd7e14;
+    color: #fd7e14;
+}
+
+.editBtn:hover {
+    background-color: #fd7e14;
+    border: 2px solid rgb(247, 176, 176);
+    color: #fff;
+}
