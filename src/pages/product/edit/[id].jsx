@@ -30,7 +30,7 @@ class ProductEdit extends Component {
     }
 
     async componentDidMount() {
-        const response = await axios.get(`http://localhost:3000/api/product/details/${this.props.id}`);
+        const response = await axios.get(`${process.env.NEXTAUTH_URL}/api/product/details/${this.props.id}`);
         if (!response.data.success) return Router.push('/');
         this.setState({ name: response.data.data.name, price: response.data.data.price, isLoading: false });
     }
@@ -44,7 +44,7 @@ class ProductEdit extends Component {
 
         const { name, price } = this.state;
 
-        const res = await axios.put(`http://localhost:3000/api/product/${this.props.id}`, { name, price });
+        const res = await axios.put(`${process.env.NEXTAUTH_URL}/api/product/${this.props.id}`, { name, price });
         // console.log(res.data);
 
         if (res.data.success) Router.push('/product');

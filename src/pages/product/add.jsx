@@ -43,7 +43,7 @@ class AddProduct extends Component {
 
         const { name, price } = this.state;
 
-        const res = await axios.post('http://localhost:3000/api/product', { name, price });
+        const res = await axios.post(`${process.env.NEXTAUTH_URL}/api/product`, { name, price });
         // console.log(res.data);
 
         if (res.data.success) Router.push('/product');
