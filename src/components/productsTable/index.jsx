@@ -33,7 +33,7 @@ class TableProducts extends Component {
         let word = '';
         (str === '') ? word = 'all' : word = str;
 
-        const res = await axios.get(`${process.env.NEXTAUTH_URL}/api/product/${word}?page=${pag}`);
+        const res = await axios.get(`/api/product/${word}?page=${pag}`);
 
         if (!res.data.success) {
             return Router.push('/');
