@@ -1,6 +1,6 @@
 .mainContent {
     width: inherit;
-    height: calc(100vh - 3.5rem);
+    height: calc(100vh - 3.5625rem);
     display: flex;
     justify-content: center;
     align-items: center;
@@ -17,7 +17,6 @@
     height: inherit;
     display: flex;
     justify-content: center;
-    /* align-items: center; */
 }
 
 .contentBody {
@@ -28,4 +27,15 @@
     margin-top: 1rem;
     /* width: 50%; */
     height: max-content;
+}
+
+/* FOR PHONE ONLY */
+@media only screen and (max-width: 599px) {
+    .container {
+        width: 100vw;
+    }
+
+    .contentBody {
+        padding: 0 0.625rem;
+    }
 }

@@ -12,7 +12,6 @@
     "axios": "^0.21.1",
     "bootstrap": "^4.6.0",
     "moment": "^2.29.1",
-    "mongodb": "^3.6.4",
     "mongoose": "^5.11.15",
     "mongoose-paginate": "^5.0.3",
     "next": "10.0.6",
@@ -22,7 +21,6 @@
     "react-dom": "17.0.1"
   },
   "devDependencies": {
-    "@types/mongodb": "^3.6.7",
     "@types/next-auth": "^3.1.24"
   }
 }

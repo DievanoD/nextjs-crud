@@ -4,10 +4,16 @@
     display: flex;
     justify-content: center;
     align-items: center;
-    /* background-color: #f8f9fa; */
-    /* color: #ffffff; */
 }
 
 .footerText {
+    text-align: center;
+    font-size: 1rem;
     color: #6e6e6e;
+}
+
+@media only screen and (min-width: 1800px) {
+    .footer {
+        height: 99px;
+    }
 }

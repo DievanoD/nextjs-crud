@@ -83,15 +83,15 @@ class TableProducts extends Component {
             <React.Fragment>
                 {(!isLoading) ?
                     <div className={`${styles.main}`}>
-                        <div className='mt-4 mb-4 text-center'>
-                            <InputGroup className='w-75 mx-auto'>
+                        <div className={`${styles.formSearch}`}>
+                            <InputGroup className={`${styles.inputSearch}`}>
                                 <FormControl type='text' placeholder='Pesquisar produto...' onKeyUp={this.keyHandler} onChange={this.setInputValue} value={input} />
                                 {/* <Button variant="light" className='ml-2' onClick={this.clear}>Limpar</Button> */}
                             </InputGroup>
                             <span className={styles.formText}><span className='text-danger'>*</span>Aperte a tecla <strong>ESC</strong> para limpar o campo de pesquisa</span>
                         </div>
                         <div className={styles.containerTable}>
-                            <Table bordered hover responsive className={`text-center`}>
+                            <Table bordered hover responsive className={`text-center mb-0`}>
                                 <thead>
                                     <tr>
                                         <th>#</th>
@@ -122,7 +122,7 @@ class TableProducts extends Component {
                                 }
                             </Table>
                         </div>
-                        <div className="d-flex justify-content-between align-items-center mt-2">
+                        <div className={`${styles.paginateGroup}`}>
                             <Button variant='primary' onClick={this.prevPage} disabled={disablePrev}><i className="fas fa-arrow-left mr-1"></i>Anterior</Button>
                             <span>Página: <span className="text-danger">{page}</span> de <span className="text-muted">{pages}</span></span>
                             <Button variant='primary' onClick={this.nextPage} disabled={disableNext}>Próxima<i className="fas fa-arrow-right ml-1"></i></Button>

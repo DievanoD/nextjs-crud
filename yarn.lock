@@ -211,7 +211,7 @@
   resolved "https://registry.yarnpkg.com/@types/invariant/-/invariant-2.2.34.tgz#05e4f79f465c2007884374d4795452f995720bbe"
   integrity sha512-lYUtmJ9BqUN688fGY1U1HZoWT1/Jrmgigx2loq4ZcJpICECm/Om3V314BxdzypO0u5PORKGMM6x0OXaljV1YFg==
 
-"@types/mongodb@^3.5.27", "@types/mongodb@^3.6.7":
+"@types/mongodb@^3.5.27":
   version "3.6.7"
   resolved "https://registry.yarnpkg.com/@types/mongodb/-/mongodb-3.6.7.tgz#b15300254083bc4c6b09036ccaaa75d2f9c6e35c"
   integrity sha512-47P64kbkXarlleSMzSrRG04uzY+Dr3xAilOiqRIsqj/sZrmq6cUMx8njydY/iWMqi8IdE9ojFQl/X3ou9EsAlQ==
@@ -1677,7 +1677,7 @@ moment@^2.29.1:
   resolved "https://registry.yarnpkg.com/moment/-/moment-2.29.1.tgz#b2be769fa31940be9eeea6469c075e35006fa3d3"
   integrity sha512-kHmoybcPV8Sqy59DwNDY3Jefr64lK/by/da0ViFcuA4DH0vQg5Q6Ze5VimxkfQNSC+Mls/Kx53s7TjP1RhFEDQ==
 
-mongodb@3.6.4, mongodb@^3.6.4:
+mongodb@3.6.4:
   version "3.6.4"
   resolved "https://registry.yarnpkg.com/mongodb/-/mongodb-3.6.4.tgz#ca59fd65b06831308262372ef9df6b78f9da97be"
   integrity sha512-Y+Ki9iXE9jI+n9bVtbTOOdK0B95d6wVGSucwtBkvQ+HIvVdTCfpVRp01FDC24uhC/Q2WXQ8Lpq3/zwtB5Op9Qw==

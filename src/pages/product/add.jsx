@@ -27,7 +27,6 @@ class AddProduct extends Component {
         const session = await getSession();
 
         if (!session) {
-            // alert('Você precisa estar logado!');
             return Router.push('/');
         }
 
@@ -44,7 +43,6 @@ class AddProduct extends Component {
         const { name, price } = this.state;
 
         const res = await axios.post(`/api/product`, { name, price });
-        // console.log(res.data);
 
         if (res.data.success) Router.push('/product');
     }

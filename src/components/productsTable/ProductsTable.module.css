@@ -3,6 +3,16 @@
     border-bottom: 1px solid #cacaca;
 }
 
+.formSearch {
+    text-align: center;
+    margin: 1.5rem 0;
+}
+
+.inputSearch {
+    width: 75%;
+    margin: 0 auto;
+}
+
 .formText {
     font-size: 0.875rem;
     color: #75757d;
@@ -22,4 +32,27 @@
     background-color: #fd7e14;
     border: 2px solid rgb(247, 176, 176);
     color: #fff;
+}
+
+.paginateGroup {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+/* FOR PHONE ONLY */
+@media only screen and (max-width: 599px) {
+    .inputSearch {
+        width: 100%;
+        padding: 0 0.625rem;
+    }
+
+    .containerTable {
+        height: calc(100vh - 14.4375rem);
+    }
+
+    .paginateGroup {
+        height: 3.9375rem;
+        padding: 0 0.625rem;
+    }
 }

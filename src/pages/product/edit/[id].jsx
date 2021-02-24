@@ -45,7 +45,6 @@ class ProductEdit extends Component {
         const { name, price } = this.state;
 
         const res = await axios.put(`/api/product/${this.props.id}`, { name, price });
-        // console.log(res.data);
 
         if (res.data.success) Router.push('/product');
     }

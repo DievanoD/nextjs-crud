@@ -5,6 +5,8 @@ import { signIn, signOut, useSession } from 'next-auth/client';
 
 import styles from './Navbar.module.css';
 
+const base_url = 'https://next-produtos.vercel.app/';
+
 const NavbarComponent = (props) => {
     const [session, loading] = useSession();
     return (
@@ -15,12 +17,12 @@ const NavbarComponent = (props) => {
                 <Navbar.Collapse className="justify-content-end" id="responsive-navbar-nav">
                     <Nav>
                         {!session && <>
-                            <Button variant="primary" onClick={() => signIn('auth0')}><i className="fas fa-sign-in-alt mr-1"></i>Login</Button>
+                            <Button variant="primary" onClick={() => signIn('auth0', { callbackUrl: `${base_url}/product` })}><i className="fas fa-sign-in-alt mr-1"></i>Login</Button>
                         </>}
                         {session && <>
                             <Button variant="success" className={`${styles.addBtn} mr-3`} onClick={() => Router.push('/product/add')}><i className="fas fa-plus"></i></Button>
                             <Navbar.Text>{session.user.email}</Navbar.Text>
-                            <Nav.Link href="#" onClick={() => signOut()}>
+                            <Nav.Link href="#" onClick={() => signOut({ callbackUrl: `${base_url}/` })}>
                                 Sair<i className="fas fa-sign-out-alt ml-1"></i>
                             </Nav.Link>
                         </>}

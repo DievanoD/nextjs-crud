@@ -10,7 +10,7 @@ import styles from '../styles/Home.module.css';
 const Home = () => {
     return (
         <React.Fragment>
-            <HeadComponent title={"Home - Next Produtos"} />
+            <HeadComponent title={"Homepage - Next Produtos"} />
             <NavbarComponent />
             <div className={`${styles.containerHome}`}>
                 <div className={styles.subcontainerHome}>
